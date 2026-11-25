@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geek Station - Plataforma Streaming & Universo Geek</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- CSS na pasta css/ -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- NAVBAR / MENU PRINCIPAL FIXO -->
+    <header class="navbar">
+      <div class="logo">
+        <i data-lucide="tv-2"></i>
+        <span>GEEK<b class="text-pink">STATION</b></span>
+      </div>
+ 
+      <nav class="nav-links">
+        <button class="nav-btn active" onclick="navigate('home')"><i data-lucide="home"></i> Início</button>
+        <button class="nav-btn" onclick="navigate('catalogo')"><i data-lucide="film"></i> Catálogo</button>
+        <!-- <button class="nav-btn" onclick="navigate('indie')"><i data-lucide="sparkles"></i> Indies</button> -->
+        <button class="nav-btn" onclick="navigate('easter-eggs')"><i data-lucide="search"></i> Easter Eggs</button>
+        <button class="nav-btn" onclick="navigate('store')"><i data-lucide="shopping-bag"></i> Geek Store</button>
+        <button class="nav-btn" onclick="navigate('watchlist')"><i data-lucide="bookmark"></i> Watchlist</button>
+        <button class="nav-btn" onclick="navigate('downloads')"><i data-lucide="download"></i> Downloads</button>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Botão Menu Mobile (Gaveta) -->
+        <button class="mobile-menu-trigger" onclick="toggleMobileDrawer()">
+            <i data-lucide="menu"></i> Menu
+        </button>
+
+        <button class="cart-btn" onclick="toggleCartModal()">
+          <i data-lucide="shopping-cart"></i>
+          <span class="cart-badge" id="cart-count">0</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- MENU SUSPENSO MOBILE (GAVETA DE OPÇÕES) -->
+    <div class="mobile-nav-drawer" id="mobileDrawer">
+        <button class="mobile-drawer-btn active" onclick="navigateMobile('home')"><i data-lucide="home"></i> Início</button>
+        <button class="mobile-drawer-btn" onclick="navigateMobile('catalogo')"><i data-lucide="film"></i> Catálogo</button>
+        <!-- <button class="mobile-drawer-btn" onclick="navigateMobile('indie')"><i data-lucide="sparkles"></i> Indies</button> -->
+        <button class="mobile-drawer-btn" onclick="navigateMobile('easter-eggs')"><i data-lucide="search"></i> Easter Eggs</button>
+        <button class="mobile-drawer-btn" onclick="navigateMobile('store')"><i data-lucide="shopping-bag"></i> Geek Store</button>
+        <button class="mobile-drawer-btn" onclick="navigateMobile('watchlist')"><i data-lucide="bookmark"></i> Watchlist</button>
+        <button class="mobile-drawer-btn" onclick="navigateMobile('downloads')"><i data-lucide="download"></i> Downloads</button>
+    </div>
+
+    <!-- CONTEÚDO DINÂMICO (PÁGINAS/ABAS) -->
+    <main id="app-content">
+
+<!-- ABAS: INÍCIO (HOME) -->
+        <section id="page-home" class="page active">
+            <!-- HERO BANNER (CARROSSEL DINÂMICO) -->
+            <div class="hero-banner-wrapper">
+                <div id="hero-banner" class="hero-banner">
+                    <div class="hero-overlay"></div>
+                    <div class="hero-content" id="hero-content">
+                        <!-- Conteúdo injetado via JavaScript -->
+                    </div>
+                </div>
+                <div class="hero-indicators" id="hero-indicators"></div>
+            </div>  
+
+            <div class="section-container">
+                <h2><i data-lucide="rocket"></i> Destaques (2023–2025) & Animes em Alta</h2>
+                <div class="carousel" id="carousel-lancamentos"></div>
+            </div>
+
+            <div class="section-container">
+                <h2><i data-lucide="trending-up"></i> Animes em Alta & Ação</h2>
+                <div class="carousel" id="carousel-populares"></div>
+            </div>
+
+            <div class="section-container">
+                <h2><i data-lucide="award"></i> Clássicos & Épicos inesquecíveis</h2>
+                <div class="carousel" id="carousel-classicos"></div>
+            </div>
+
+            <div class="section-container">
+                <h2><i data-lucide="sparkles"></i> Outros Gêneros</h2>
+                <div class="carousel" id="carousel-outros"></div>
+            </div>
+        </section>
+
+        <!-- ABA: CATÁLOGO -->
+        <section id="page-catalogo" class="page">
+            <div class="page-header">
+                <h1>Catálogo Completo</h1>
+                <div class="filter-bar">
+                    <input type="text" id="search-catalogo" placeholder="Buscar filmes ou animes..." oninput="filterCatalogo()">
+                    <select id="filter-genero" onchange="filterCatalogo()">
+                        <option value="todos">Todos os Gêneros</option>
+                        <option value="Ação">Ação</option>
+                        <option value="Aventura">Aventura</option>
+                        <option value="Comédia">Comédia</option>
+                        <option value="Drama">Drama</option>
+                        <option value="Esportes">Esportes</option>
+                        <option value="Fantasia">Fantasia</option>
+                        <option value="Mistério">Mistério</option>
+                        <option value="Música">Música</option>
+                        <option value="Romance">Romance</option>
+                        <option value="Sci-Fi">Sci-Fi</option>
+                    </select>
+                </div>
+            </div>
+            <div class="grid-cards" id="grid-catalogo"></div>
+        </section>
+
+        <!-- ABA: INDIES -->
+        <section id="page-indie" class="page">
+            <div class="page-header">
+                <h1>Produções Independentes & Autorais</h1>
+                <p>Espaço dedicado a criadores emergentes e obras fora do circuito comercial tradicional.</p>
+            </div>
+            <div class="grid-cards" id="grid-indies"></div>
+        </section>
+
+        <!-- ABA: EASTER EGGS -->
+        <section id="page-easter-eggs" class="page">
+            <div class="page-header">
+                <h1>Caça aos Easter Eggs</h1>
+                <input type="text" id="search-easter" placeholder="Buscar easter egg por filme..." oninput="filterEasterEggs()">
+            </div>
+            <div class="grid-cards" id="grid-easter-eggs"></div>
+        </section>
+
+        <!-- ABA: GEEK STORE -->
+        <section id="page-store" class="page">
+            <div class="page-header">
+                <h1>Geek Store - Produtos Oficiais</h1>
+                <p>Colecionáveis, figurinos e vestuário originais dos seus universos favoritos.</p>
+            </div>
+            <div class="grid-cards" id="grid-store"></div>
+        </section>
+
+        <!-- ABA: WATCHLIST -->
+        <section id="page-watchlist" class="page">
+            <div class="page-header">
+                <h1>Minha Watchlist</h1>
+                <div class="tab-subnav">
+                    <button class="subnav-btn active" id="tab-assistir-depois" onclick="switchWatchlistTab('depois')">Assistir mais Tarde</button>
+                    <button class="subnav-btn" id="tab-assistidos" onclick="switchWatchlistTab('assistidos')">Já Assistidos</button>
+                </div>
+            </div>
+            <div class="grid-cards" id="grid-watchlist"></div>
+        </section>
+
+        <!-- ABA: DOWNLOADS -->
+        <section id="page-downloads" class="page">
+            <div class="page-header">
+                <h1>Gerenciador de Downloads (Offline)</h1>
+                <p>Simulação de conteúdo salvo localmente para reprodução sem internet.</p>
+            </div>
+            <div class="grid-cards" id="grid-downloads"></div>
+        </section>
+
+    </main>
+
+    <!-- MODAL DO CARRINHO -->
+    <div id="modal-carrinho" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i data-lucide="shopping-cart"></i> Meu Carrinho</h2>
+                <button class="close-btn" onclick="toggleCartModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="cart-items"></div>
+            <div class="modal-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <strong id="cart-total-value">R$ 0,00</strong>
+                </div>
+                <button class="btn btn-action" onclick="checkout()">Finalizar Compra</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL PLAYER DE VÍDEO -->
+    <div id="modal-player" class="modal">
+        <div class="modal-content player-content">
+            <button class="close-btn" onclick="closePlayer()">&times;</button>
+            <h3 id="player-title">Reproduzindo Filme</h3>
+            <div class="video-wrapper">
+                <iframe 
+                    id="html5-player" 
+                    width="100%" 
+                    height="450" 
+                    src="" 
+                    title="Player de Vídeo" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <div class="player-credits">
+                <a id="player-credits-link" class="btn-player-credits" href="#" target="_blank" rel="noopener noreferrer">
+                    Créditos: <span id="player-credits-source">YouTube</span>
+                    <i data-lucide="external-link"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT PRINCIPAL na pasta js/ -->
+    <script src="js/script.js"></script>
+    <script>
+        if (window.lucide) {
+            lucide.createIcons();
+        }
+    </script>
+</body>
+</html>

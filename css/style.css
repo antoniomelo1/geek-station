@@ -1,0 +1,1051 @@
+:root {
+    --bg-main: #0F0F14;
+    --bg-secondary: #1A1A24;
+    --primary: #7209B7;
+    --secondary: #4CC9F0;
+    --accent: #FF007F;
+    --text-color: #F8F9FA;
+    --text-muted: #A0A0B0;
+    --card-radius: 12px;
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-color);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.text-pink {
+    color: var(--accent);
+}
+
+/* NAVBAR FIXO / HEADER STREAMING */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(15, 15, 20, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.3rem;
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--secondary);
+    font-weight: 700;
+}
+
+.logo b {
+    color: var(--accent);
+}
+
+.nav-links {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.nav-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    padding: 0.5rem 0.8rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.nav-btn:hover, .nav-btn.active {
+    color: #fff;
+    background: var(--primary);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.cart-btn {
+    background: var(--accent);
+    border: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    font-weight: 600;
+}
+
+.cart-badge {
+    background: white;
+    color: var(--accent);
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.75rem;
+}
+
+/* BOTÃO DE MENU PARA TELAS MENORES / CELULAR */
+.mobile-menu-trigger {
+    display: none;
+    background: var(--bg-secondary);
+    border: 1px solid var(--primary);
+    color: #fff;
+    padding: 0.5rem 0.8rem;
+    border-radius: 8px;
+    cursor: pointer;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* MENU SUSPENSO / GAVETA MOBILE */
+.mobile-nav-drawer {
+    display: none;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: var(--bg-secondary);
+    border-bottom: 2px solid var(--primary);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+    z-index: 999;
+    padding: 1rem;
+    flex-direction: column;
+    gap: 0.5rem;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.mobile-nav-drawer.open {
+    display: flex;
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.mobile-drawer-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    padding: 0.8rem 1rem;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+    transition: var(--transition);
+}
+
+.mobile-drawer-btn:hover, .mobile-drawer-btn.active {
+    background: var(--primary);
+    color: #fff;
+}
+
+/* CONTAINER DAS PÁGINAS (SPA) */
+main {
+    padding: 1.5rem 2rem;
+    margin-top: 75px;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.page-header {
+    margin-bottom: 1.5rem;
+}
+
+.page-header h1 {
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.page-header p {
+    color: var(--text-muted);
+}
+
+/* HERO BANNER ESTILO NETFLIX */
+.hero-banner-wrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.hero-banner {
+    position: relative;
+    height: 70vh;
+    min-height: 450px;
+    border-radius: 16px;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: flex;
+    /* Alinha o conteúdo verticalmente embaixo e horizontalmente à esquerda */
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding: 3rem; /* Espaçamento das bordas */
+    overflow: hidden;
+    transition: background-image 0.8s ease-in-out;
+}
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(15, 15, 20, 0.95) 0%, rgba(15, 15, 20, 0.75) 45%, rgba(15, 15, 20, 0.2) 75%, transparent 100%),
+                linear-gradient(0deg, rgba(15, 15, 20, 1) 0%, rgba(15, 15, 20, 0) 35%);
+    z-index: 2;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 550px;
+    width: 100%;
+    text-align: left; /* Garante o texto alinhado à esquerda */
+}
+
+.hero-content h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin: 0.8rem 0;
+    color: #ffffff;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    word-break: break-word;
+}
+
+/* Ajusta os elementos internos para manterem a organização à e */
+.hero-meta {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Joga os metadados para a esquerda */
+    gap: 0.8rem;
+    font-size: 0.85rem;
+    color: #a0a0b0;
+    margin-bottom: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.badge-neon {
+    background: var(--primary);
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.hero-content p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #d1d1e0;
+    margin-bottom: 1.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: flex-end; /* Alinha os botões à direita */
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.btn-hero-play, .btn-hero-info {
+    padding: 0.7rem 1.8rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    transition: all 0.2s ease;
+}
+
+.btn-hero-play {
+    background-color: #ffffff;
+    color: #000000;
+    font-weight: 700;
+}
+
+.btn-hero-play:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+    transform: scale(1.03);
+}
+
+.btn-hero-info {
+    background-color: rgba(109, 109, 110, 0.7);
+    color: #ffffff;
+    backdrop-filter: blur(5px);
+}
+
+.btn-hero-info:hover {
+    background-color: rgba(109, 109, 110, 0.4);
+    transform: scale(1.03);
+}
+
+.hero-indicators {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    display: flex;
+    gap: 6px;
+    max-width: 90%;
+    overflow-x: auto;
+    padding: 4px;
+}
+
+.hero-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: var(--transition);
+    flex-shrink: 0;
+}
+
+.hero-dot.active {
+    background: var(--secondary);
+    width: 20px;
+    border-radius: 10px;
+}
+
+/* BOTÕES GERAIS */
+.btn {
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transition);
+}
+
+.btn-primary { background: var(--secondary); color: #000; }
+.btn-primary:hover { background: #3ab2d9; }
+.btn-secondary { background: var(--bg-secondary); color: white; border: 1px solid var(--primary); }
+.btn-secondary:hover { background: var(--primary); }
+.btn-action { background: var(--accent); color: white; width: 100%; justify-content: center; }
+
+/* SEÇÕES E CARROSSÉIS */
+.section-container {
+    margin-bottom: 2.5rem;
+}
+
+.section-container h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    color: var(--secondary);
+}
+
+.carousel {
+    display: flex;
+    gap: 1.2rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    scroll-behavior: smooth;
+}
+
+.carousel::-webkit-scrollbar {
+    height: 6px;
+}
+
+.carousel::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
+}
+
+/* CARDS DE MÍDIA */
+.card-media {
+    min-width: 220px;
+    max-width: 240px;
+    background: var(--bg-secondary);
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    flex-shrink: 0;
+    position: relative;
+}
+
+.card-media:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+    border-color: rgba(114, 9, 183, 0.5);
+    z-index: 10;
+}
+
+.card-image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+}
+
+.card-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.card-media:hover .card-image-wrapper img {
+    transform: scale(1.08);
+}
+
+.card-overlay-actions {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 15, 20, 0.65);
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card-media:hover .card-overlay-actions {
+    opacity: 1;
+}
+
+.btn-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-icon:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+    transform: scale(1.1);
+}
+
+.btn-icon.active {
+    background: var(--secondary);
+    border-color: var(--secondary);
+    color: #000;
+}
+
+.btn-icon.btn-play {
+    background: #fff;
+    color: #000;
+    border: none;
+}
+
+.btn-icon.btn-play:hover {
+    background: var(--secondary);
+}
+
+.btn-icon.btn-source {
+    background: rgba(114, 9, 183, 0.95);
+    color: #fff;
+    border: none;
+    text-decoration: none;
+}
+
+.btn-icon.btn-source:hover {
+    background: var(--accent);
+}
+
+.card-info {
+    padding: 0.9rem 1rem;
+    background: var(--bg-secondary);
+}
+
+.card-info h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 0.2rem;
+    color: #fff;
+}
+
+.card-info p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* GRIDS E FILTROS */
+.grid-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.tab-subnav {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.subnav-btn {
+    background: var(--bg-secondary);
+    border: 1px solid var(--primary);
+    color: var(--text-muted);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.subnav-btn.active {
+    background: var(--primary);
+    color: white;
+}
+
+.filter-bar {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.filter-bar input, .filter-bar select {
+    background: var(--bg-secondary);
+    border: 1px solid var(--primary);
+    color: white;
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+}
+
+.filter-bar input { flex-grow: 1; }
+
+/* MODAIS */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.active { display: flex; }
+
+.modal-content {
+    background: var(--bg-secondary);
+    width: 90%;
+    max-width: 500px;
+    border-radius: var(--card-radius);
+    padding: 1.5rem;
+    border: 1px solid var(--primary);
+}
+
+.player-content { max-width: 800px; width: 95%; }
+.video-wrapper iframe { width: 100%; border-radius: 8px; margin-top: 1rem; }
+
+.player-credits {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.8rem;
+}
+
+.btn-player-credits {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--secondary);
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.btn-player-credits:hover {
+    color: var(--accent);
+}
+
+.btn-player-credits svg {
+    width: 15px;
+    height: 15px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.close-btn {
+    background: none; border: none; color: white; font-size: 1.8rem; cursor: pointer;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    margin: 1rem 0;
+}
+
+/* MEDIA QUERIES RESPONSIVAS */
+@media (max-width: 992px) {
+    .nav-links {
+        display: none;
+    }
+    .mobile-menu-trigger {
+        display: flex;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0.8rem 1rem;
+    }
+
+    main {
+        padding: 1rem;
+        margin-top: 65px;
+    }
+
+    .hero-banner {
+        height: auto;
+        min-height: 480px;
+        padding: 2.5rem 1.2rem 3rem 1.2rem;
+        border-radius: 12px;
+    }
+
+    .hero-content h1 {
+        font-size: 1.8rem;
+        margin: 0.5rem 0;
+    }
+
+    .hero-content p {
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+        line-clamp: 2;
+        -webkit-line-clamp: 2;
+    }
+
+    .hero-buttons {
+        gap: 0.5rem;
+    }
+
+    .btn-hero-play, .btn-hero-info {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.85rem;
+        flex: 1;
+        justify-content: center;
+    }
+
+    .hero-indicators {
+        bottom: 10px;
+    }
+
+    .grid-cards {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 1rem;
+    }
+
+    .card-media {
+        min-width: 160px;
+        max-width: 100%;
+    }
+
+    .card-image-wrapper {
+        height: 110px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 1.1rem;
+    }
+
+    .hero-content h1 {
+        font-size: 1.5rem;
+    }
+
+    .filter-bar {
+        flex-direction: column;
+    }
+
+    .filter-bar input, .filter-bar select {
+        width: 100%;
+    }
+}
+
+/* =================EM DISPOSITIVOS MÓVEIS (CELULAR)================= */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0.8rem 1rem;
+    }
+
+    main {
+        padding: 1rem;
+        margin-top: 65px;
+    }
+
+    /* Ajuste do Carrossel Hero para Celular */
+    .hero-banner {
+        height: auto;
+        min-height: 480px;
+        /* Manda o conteúdo mais para baixo alinhando ao fundo */
+        align-items: flex-end; 
+        padding: 2rem 1rem 2.5rem 1rem;
+        border-radius: 12px;
+    }
+
+    /* Ajuste do gradiente para escurecer mais embaixo, onde o texto agora fica */
+    .hero-overlay {
+        background: linear-gradient(180deg, rgba(15, 15, 20, 0.2) 0%, rgba(15, 15, 20, 0.8) 50%, rgba(15, 15, 20, 0.95) 100%);
+    }
+
+    /* Reduzindo o tamanho das fontes e margens do conteúdo no celular */
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .hero-meta {
+        font-size: 0.75rem;
+        gap: 0.5rem;
+        margin-bottom: 0.4rem;
+    }
+
+    .hero-content h1 {
+        font-size: 1.5rem; /* Diminuído para celular */
+        margin: 0.3rem 0;
+    }
+
+    .hero-content p {
+        font-size: 0.8rem; /* Diminuído para celular */
+        margin-bottom: 1rem;
+        -webkit-line-clamp: 2; /* Mostra no máximo 2 linhas para não ocupar muito espaço */
+        line-clamp: 2;
+    }
+
+    .hero-buttons {
+        gap: 0.5rem;
+    }
+
+    .btn-hero-play, .btn-hero-info {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+        flex: 1;
+        justify-content: center;
+    }
+
+    .hero-indicators {
+        bottom: 8px;
+    }
+
+    .grid-cards {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 1rem;
+    }
+
+    .card-media {
+        min-width: 160px;
+        max-width: 100%;
+    }
+
+    .card-image-wrapper {
+        height: 110px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 1.1rem;
+    }
+
+    .hero-content h1 {
+        font-size: 1.35rem; /* Ainda mais compacto em telas bem pequenas */
+    }
+
+    .filter-bar {
+        flex-direction: column;
+    }
+
+    .filter-bar input, .filter-bar select {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Ajuste geral do carrossel no celular para rolar suavemente por encaixe */
+    .carousel {
+        display: flex;
+        gap: 0.8rem;
+        overflow-x: auto;
+        padding-bottom: 0.8rem;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .carousel::-webkit-scrollbar {
+        display: none; /* Esconde a barra de rolagem no celular para ficar limpo */
+    }
+
+    /* Deixando os cards com cara de pôster profissional no celular */
+    .card-media {
+        min-width: 130px;  /* Largura ideal para caber 2 ou 3 na tela */
+        max-width: 130px;
+        flex-shrink: 0;
+        scroll-snap-align: start;
+        background: var(--bg-secondary);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .grid-cards {
+        justify-items: center;
+    }
+
+    .grid-cards .card-media {
+        width: 100%;
+        min-width: 0;
+        max-width: 180px;
+    }
+
+    /* Cards no formato panoramico 16:9 */
+    .card-image-wrapper {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+    }
+
+    .card-image-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* Informações do card compactas e organizadas */
+    .card-info {
+        padding: 0.6rem;
+    }
+
+    .card-info h4 {
+        font-size: 0.82rem;
+        font-weight: 600;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #fff;
+        margin-bottom: 0.15rem;
+    }
+
+    .card-info p {
+        font-size: 0.7rem;
+        color: var(--text-muted);
+    }
+
+        /* Remove a barra de rolagem no Chrome, Safari e Opera */
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Remove a barra de rolagem no Firefox e IE/Edge */
+    html {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+        /* Força a remoção total da barra de rolagem e do fundo branco da janela */
+    html, body {
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* Internet Explorer 10+ */
+        overflow-y: scroll; /* Mantém a capacidade de rolar a página */
+    }
+
+    html::-webkit-scrollbar, 
+    body::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+        width: 0px;
+        background: transparent;
+    }
+        /* Pinta a barra de rolagem com a mesma cor do fundo principal (#0F0F14) */
+    ::-webkit-scrollbar {
+        width: 10px;
+        background-color: #0F0F14;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #0F0F14; /* Torna o "puxador" da barra da mesma cor do fundo */
+        border: none;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: #0F0F14;
+    }
+
+}
+
+    .cart-toast {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: var(--bg-secondary);
+        border: 1px solid var(--accent);
+        color: #fff;
+        padding: 1rem 1.5rem;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        z-index: 9999;
+        animation: slideInUp 0.3s ease, fadeOut 0.3s ease 2.7s forwards;
+    }   
+
+    .cart-toast i {
+        color: var(--secondary);
+        width: 28px;
+        height: 28px;
+    }
+
+    .cart-toast span {
+        font-size: 0.95rem;
+        font-weight: 500;
+    }
+
+    @keyframes slideInUp {
+        from {
+            transform: translateY(100px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeOut {
+        to {
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+
+    /* ESTILO DA NOTIFICAÇÃO CENTRALIZADA NA TELA */
+    .cart-toast {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.9);
+        background: rgba(26, 26, 36, 0.95);
+        border: 2px solid var(--accent);
+        color: #fff;
+        padding: 2rem 2.5rem;
+        border-radius: 16px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+        display: flex;
+        flex-direction: column; /* Deixa o ícone em cima e o texto embaixo */
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        z-index: 9999;
+        text-align: center;
+        animation: popInCenter 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, fadeOutCenter 0.3s ease 2.2s forwards;
+        backdrop-filter: blur(10px);
+    }
+
+    .cart-toast i {
+        color: var(--accent);
+        width: 48px;
+        height: 48px;
+        animation: bounceIcon 1s infinite alternate;
+    }
+
+    .cart-toast span {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #fff;
+    }
+
+    @keyframes popInCenter {
+        0% {
+           transform: translate(-50%, -50%) scale(0.5);
+            opacity: 0;
+        }
+        100% {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeOutCenter {
+        0% {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+        100% {
+            transform: translate(-50%, -50%) scale(0.9);
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+
+    @keyframes bounceIcon {
+        from { transform: translateY(0); }
+        to { transform: translateY(-8px); }
+    }
